@@ -2,8 +2,9 @@ function getTotalBooksCount(books) {
 /*takes in a single parameter: An array of book objects
 It returns a _number_ that represents the number of book objects inside of the array
 */
-
-
+let total = 0; 
+return books.reduce((books) => books + 1, total);  
+             
 }
 
 function getTotalAccountsCount(accounts) {
