@@ -4,7 +4,7 @@ function findAuthorById(authors, id) {
   - An integer ID of a single author object.
   It returns the author object that has the matching ID.
   */
-  
+  return authors.find((author) => author.id === id);
 
 }
 
