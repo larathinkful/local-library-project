@@ -48,10 +48,17 @@ Look carefully at the object below, as it's not just the book object; the author
           last: "Lester",
         },
   */
-let borrowedBooks=books.filter(book=>
-    book.some(borrow=>borrow.id===account.id));
-  return borrowedBooks;
-
+ let borrowedBooks = [];
+    books.forEach(book=>{
+      if (book.borrows.find(item=>item.id === account.id && !item.returned)) {
+        borrowedBooks.push(book);
+      }
+    });
+    borrowedBooks.forEach(book=>{
+      const authorVar = authors.find(person => person.id === book.authorId);
+      book['author'] = authorVar;
+    });
+    return borrowedBooks;
   
 
 }
