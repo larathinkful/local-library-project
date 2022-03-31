@@ -26,9 +26,9 @@ The first array contains book objects that represent the books _that are current
 while the second array contains book objects that represent the books _that have been returned_.
 You can check for the return status by looking at the first transaction object in the `borrows` array.
 */
-let booksCheckedOut = books.filter((book) => book.borrows.every((borrow) => borrow.returned === false));
+let booksCheckedOut = books.filter((book) => book.borrows.some((borrow) => borrow.returned === false));
 let booksReturned = books.filter((book) => book.borrows.every((borrow) => borrow.returned === true));
-let booksArray = [[booksCheckedOut], [booksReturned]];
+let booksArray = [[...booksCheckedOut], [...booksReturned]];
  return booksArray;
  
 
