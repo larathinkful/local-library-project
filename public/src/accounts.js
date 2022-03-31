@@ -5,14 +5,15 @@ function findAccountById(accounts, id) {
 It returns the account object that has the matching ID.
 */
   
-
+return accounts.find((account) => account.id === id);
 }
 
 function sortAccountsByLastName(accounts) {
 /*takes in a single parameter: an array of account objects.
 It returns a sorted array of the provided account objects. The objects are sorted alphabetically by last name.
 */
-
+accounts.sort((accountA, accountB) => accountA.name.last.toLowerCase() > accountB.name.last.toLowerCase() ? 1 : -1);
+              return accounts;
   
 }
 
@@ -22,8 +23,10 @@ function getTotalNumberOfBorrows(account, books) {
 - An array of all book objects.
 It returns a _number_ that represents the number of times the account's ID appears in any book's `borrows` array.
 */
-  
-
+const accountId = account.id;
+let total = 0; 
+books.forEach(book => book.borrows.forEach(borrow => accountId === borrow.id && total++));
+  return total;
 }
 
 function getBooksPossessedByAccount(account, books, authors) {
@@ -45,7 +48,10 @@ Look carefully at the object below, as it's not just the book object; the author
           last: "Lester",
         },
   */
-  
+let borrowedBooks=books.filter(book=>
+    book.some(borrow=>borrow.id===account.id));
+  return borrowedBooks;
+
   
 
 }
