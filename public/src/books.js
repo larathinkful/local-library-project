@@ -41,8 +41,11 @@ function getBorrowersForBook(book, accounts) {
 It should return an array of ten or fewer account objects that represents the accounts given by the IDs in the provided book's `borrows` array. 
 However, each account object should include the `returned` entry from the corresponding transaction object in the `borrows` array.
 */
-  
-
+return book.borrows.map((borrow) => {
+   let account = accounts.find((account) => account.id === borrow.id);
+   return { ...borrow, ...account };
+  })
+  .slice(0, 10);
 }
 
 module.exports = {
