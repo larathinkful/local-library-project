@@ -25,7 +25,7 @@ It returns a _number_ that represents the number of times the account's ID appea
 */
 const accountId = account.id;
 let total = 0; 
-books.forEach(book => book.borrows.forEach(borrow => accountId === borrow.id && total++));
+books.forEach((book) => book.borrows.forEach((borrow) => accountId === borrow.id && total++));
   return total;
 }
 
@@ -49,12 +49,12 @@ Look carefully at the object below, as it's not just the book object; the author
         },
   */
  let borrowedBooks = [];
-    books.forEach(book=>{
-      if (book.borrows.find(item=>item.id === account.id && !item.returned)) {
+    books.forEach((book)=>{
+      if (book.borrows.find((item)=>item.id === account.id && !item.returned)) {
         borrowedBooks.push(book);
       }
     });
-    borrowedBooks.forEach(book=>{
+    borrowedBooks.forEach((book)=>{
       const authorVar = authors.find(person => person.id === book.authorId);
       book['author'] = authorVar;
     });
