@@ -77,16 +77,12 @@ Each object in the returned array has two keys:
 - The `count` key which represents the number of times the author's books have been borrowed.
 Even if there is a tie, the array should contain no more than five objects.
 */
-let popAuthors = [];
-  authors.forEach((author) => {
-    const theAuthor = {  name: `${author.name.first} ${author.name.last}`,
-   count: 0 };
-    books.forEach((book) => { 
-      if (book.authorID === author.id) {
-        author.count += book.borrows.length;
-      }
-    });
-    popAuthors.push(theAuthor);
+let popAuthors = books.map((book) => {
+    const author = authors.find((author) => author.id === book.authorId)
+    return {
+      name: `${author.name.first} ${author.name.last}`,
+      count: book.borrows.length
+    }
   });
 return popAuthors.sort((a, b) => b.count - a.count).slice(0, 5);
 }
