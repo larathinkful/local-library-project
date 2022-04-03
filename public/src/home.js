@@ -58,8 +58,13 @@ Each object in the returned array has two keys:
 Even if there is a tie, the array should only contain no more than five objects.
 */
 
-
+  return books.map((book) => {
+    return {name: book.title, count: book.borrows.length};
+  }) 
+  .sort((a,b) => (a.count < b.count ? 1 : -1))
+  .slice(0, 5);
 }
+
 
 function getMostPopularAuthors(books, authors) {
 /*takes in two parameters, in the following order:
