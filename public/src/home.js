@@ -35,17 +35,21 @@ Each object in the returned array has two keys:
 - The `count` key which represents the number of times the genre occurs.
 Even if there is a tie, the array should only contain no more than five objects.
 */
-let popGenre = [];
-  books.forEach((book) =>{
-  const genreMatch = genres.find((genre) => genre.name === book.genre);
-    if (genreMatch) { 
-      genreMatch++
-    } else { 
-  const genreName = book.genre;
-   popGenre.push({name, count :1});
-    }
-  });
- return popGenre;   
+let gen = {};
+ books.forEach((num) => { 
+   if (gen[num.genre]) { gen[num.genre]++;
+  } else {
+   gen[num.genre] = 1; }
+ });
+ return Object.entries(gen)
+  .map(([name, count]) => {
+   return {
+    name,
+    count
+   };
+  })
+  .sort((a,b) => (a.count < b.count ? 1 : -1))
+  .slice(0, 5);
 }
 
 function getMostPopularBooks(books) {
